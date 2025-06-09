@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="images/logo.png" alt="Aapka Nivesh Logo">
+                        <img src="images/logo1.png" alt="Aapka Nivesh Logo">
                         <span>Aapka Nivesh</span>
                     </a>
                 </div>
@@ -43,65 +43,67 @@
                     <li><a href="photos.html">Photos</a></li>
                     <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
-                <div class="hamburger">
+                <button class="hamburger" aria-label="Toggle Menu">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="contact-hero">
+        <section class="hero contact-hero-section">
             <div class="container">
-                <h1>Get in Touch</h1>
-                <p>We're here to help you with your investment journey</p>
+                <div class="hero-content">
+                    <h1>Get in Touch</h1>
+                    <p class="subtitle">We're here to help you with your investment journey</p>
+                </div>
             </div>
         </section>
 
-        <section class="contact-section">
+        <section class="contact-details-section content-section">
             <div class="container">
                 <div class="contact-grid">
-                    <div class="contact-info">
+                    <div class="contact-info-card">
                         <h2>Contact Information</h2>
                         <div class="info-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
                                 <h3>Address</h3>
-                                <p>Ground Floor, Aapka Nivesh, Shiv Shakti Boys Hostel, Back Side Of Ayachi Hospital,
-                                    BMP Rd, near Pillar No 35, Khajpura, Patna, Bihar 800014</p>
+                                <p>SHIV SHAKTI BOY'S HOSTEL jagdish bhawan, BMP Rd, near piller no-35, Ashiana More,
+                                    Khajpura, Patna, Bihar 800014</p>
                             </div>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-phone"></i>
                             <div>
                                 <h3>Phone</h3>
-                                <p>+91 9162486757</p>
+                                <p><a href="tel:+919162486757">+91 9162486757</a></p>
                             </div>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h3>Email</h3>
-                                <p>info@aapkanivesh.com</p>
+                                <p><a href="mailto:info@aapkanivesh.com">info@aapkanivesh.com</a></p>
                             </div>
                         </div>
                         <div class="quick-actions">
-                            <a href="https://wa.me/919162486757" class="whatsapp-button" target="_blank">
+                            <a href="https://wa.me/9162486757" class="cta-button whatsapp-button-inline"
+                                target="_blank">
                                 <i class="fab fa-whatsapp"></i>
                                 Chat on WhatsApp
                             </a>
-                            <div class="cta-buttons">
-                                <a href="why-mutual-funds.html" class="invest-button">
-                                    Start Investing
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-                            </div>
+                            <a href="why-mutual-funds.html" class="cta-button secondary">
+                                Start Investing
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="contact-form">
+                    <div class="contact-form-card">
+                        <h2>Send us a Message</h2>
                         <form id="contactForm" action="https://formspree.io/f/xpzvwlpd" method="POST">
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -129,7 +131,10 @@
                                 <label for="message">Message</label>
                                 <textarea id="message" name="message" rows="5" required></textarea>
                             </div>
-                            <button type="submit" class="submit-button">Send Message</button>
+                            <button type="submit" class="cta-button primary">
+                                Submit Message
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
                         </form>
                         <div id="formMessage" class="form-message"></div>
                     </div>
@@ -137,15 +142,40 @@
             </div>
         </section>
 
-        <section class="sebi-note">
+        <section class="map-section content-section">
+            <div class="container">
+                <h2>Find Us on Map</h2>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.94065675549!2d85.0837583745265!3d25.61173917740263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f29938a9a4066b%3A0xf6b567d12f3e8f7!2sSHIV%20SHAKTI%20BOY'S%20HOSTEL%20jagdish%20bhawan%2C%20BMP%20Rd%2C%20near%20piller%20no-35%2C%20Ashiana%20More%2C%20Khajpura%2C%20Patna%2C%20Bihar%20800014!5e0!3m2!1sen!2sin!4v1689688031306!5m2!1sen!2sin"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="sebi-note content-section">
             <div class="container">
                 <div class="sebi-badge">
-                    <span>SEBI Registered Mutual Fund Distributor</span>
-                    <strong>ARN-123456</strong>
+                    <h3>Regulatory Information</h3>
+                    <p>SEBI Registered Mutual Fund Distributor</p>
+                    <p><strong>ARN-142205 / 314139</strong></p>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/9162486757" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+        <img src="images/logo1.png" alt="Logo" class="whatsapp-logo-mobile">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat on WhatsApp</span>
+    </a>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <footer>
         <div class="container">
@@ -170,10 +200,10 @@
                 <div class="footer-section">
                     <h3>Connect With Us</h3>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -220,7 +250,7 @@
                 })
                 .finally(() => {
                     submitButton.disabled = false;
-                    submitButton.textContent = 'Send Message';
+                    submitButton.textContent = 'Submit Message';
                 });
         });
     </script>

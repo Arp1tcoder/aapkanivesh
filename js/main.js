@@ -41,19 +41,135 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Mobile Menu Toggle
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
-    document.body.classList.toggle('no-scroll');
-});
+// Mobile Menu Functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const body = document.body;
+    const navItems = document.querySelectorAll('.nav-links a');
 
-menuOverlay.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navLinks.classList.remove('active');
-    menuOverlay.classList.remove('active');
-    document.body.classList.remove('no-scroll');
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        body.classList.toggle('no-scroll');
+    }
+
+    // Add click feedback to menu items
+    navItems.forEach(item => {
+        item.addEventListener('click', function (e) {
+            // Add ripple effect
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            this.appendChild(ripple);
+
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+            ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+
+            // Remove ripple after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+
+            // Close mobile menu if open
+            if (navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
+        // Add hover effect for desktop
+        if (window.innerWidth > 768) {
+            item.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-2px)';
+            });
+
+            item.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        }
+    });
+
+    // Toggle menu on hamburger click
+    hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Close menu when clicking overlay
+    menuOverlay.addEventListener('click', toggleMenu);
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        }, 250);
+    });
+
+    // Add touch swipe support for mobile menu
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    navLinks.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    navLinks.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndX - touchStartX;
+
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0 && navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        }
+    }
+
+    // Add active class to current page link
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    navItems.forEach(item => {
+        if (item.getAttribute('href') === currentPage) {
+            item.classList.add('active');
+        }
+    });
+
+    // Add keyboard navigation support
+    navLinks.addEventListener('keydown', function (e) {
+        const items = Array.from(navItems);
+        const currentIndex = items.indexOf(document.activeElement);
+
+        switch (e.key) {
+            case 'ArrowRight':
+            case 'ArrowDown':
+                e.preventDefault();
+                const nextIndex = (currentIndex + 1) % items.length;
+                items[nextIndex].focus();
+                break;
+            case 'ArrowLeft':
+            case 'ArrowUp':
+                e.preventDefault();
+                const prevIndex = (currentIndex - 1 + items.length) % items.length;
+                items[prevIndex].focus();
+                break;
+            case 'Escape':
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+                break;
+        }
+    });
 });
 
 // Photo Slideshow
@@ -335,4 +451,106 @@ const testimonialSlider = {
 // Initialize testimonial slider when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     testimonialSlider.init();
+});
+
+// SIP Calculator
+document.addEventListener('DOMContentLoaded', function () {
+    const sipCalculatorForm = document.getElementById('sipCalculatorForm');
+    const monthlyInvestmentInput = document.getElementById('monthlyInvestment');
+    const expectedReturnInput = document.getElementById('expectedReturn');
+    const investmentDurationInput = document.getElementById('investmentDuration');
+    const resultsSection = document.getElementById('resultsSection');
+    const totalInvestmentSpan = document.getElementById('totalInvestment');
+    const estimatedReturnsSpan = document.getElementById('estimatedReturns');
+    const totalValueSpan = document.getElementById('totalValue');
+    const sipChartCanvas = document.getElementById('sipChart');
+    let sipChart;
+
+    function formatCurrency(value) {
+        return `₹${value.toLocaleString('en-IN')}`;
+    }
+
+    function calculateSIP() {
+        const monthlyInvestment = parseFloat(monthlyInvestmentInput.value);
+        const expectedReturn = parseFloat(expectedReturnInput.value) / 100;
+        const investmentDuration = parseFloat(investmentDurationInput.value);
+
+        if (isNaN(monthlyInvestment) || isNaN(expectedReturn) || isNaN(investmentDuration) || monthlyInvestment <= 0 || expectedReturn <= 0 || investmentDuration <= 0) {
+            resultsSection.classList.remove('active');
+            if (sipChart) {
+                sipChart.destroy();
+            }
+            return;
+        }
+
+        const totalMonths = investmentDuration * 12;
+        const monthlyReturnRate = expectedReturn / 12;
+
+        let futureValue = 0;
+        for (let i = 0; i < totalMonths; i++) {
+            futureValue = (futureValue + monthlyInvestment) * (1 + monthlyReturnRate);
+        }
+
+        const totalInvestment = monthlyInvestment * totalMonths;
+        const estimatedReturns = futureValue - totalInvestment;
+
+        totalInvestmentSpan.textContent = formatCurrency(Math.round(totalInvestment));
+        estimatedReturnsSpan.textContent = formatCurrency(Math.round(estimatedReturns));
+        totalValueSpan.textContent = formatCurrency(Math.round(futureValue));
+
+        resultsSection.classList.add('active');
+        updateChart(totalInvestment, estimatedReturns);
+    }
+
+    function updateChart(totalInvestment, estimatedReturns) {
+        const investedColor = '#36A2EB';
+        const returnsColor = '#FF6384';
+
+        if (sipChart) {
+            sipChart.destroy();
+        }
+
+        sipChart = new Chart(sipChartCanvas, {
+            type: 'pie',
+            data: {
+                labels: ['Total Invested', 'Estimated Returns'],
+                datasets: [{
+                    data: [totalInvestment, estimatedReturns],
+                    backgroundColor: [investedColor, returnsColor],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += formatCurrency(Math.round(context.parsed));
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    sipCalculatorForm.addEventListener('input', calculateSIP);
+    sipCalculatorForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateSIP();
+    });
+
+    // Initial calculation when page loads if fields have values
+    calculateSIP();
 });
