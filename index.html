@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Aapka Nivesh - Your trusted SEBI registered mutual fund distributor. Expert guidance for smart investing and wealth creation.">
+    <meta name="keywords" content="mutual funds, investment, SEBI registered, wealth management, financial advisor">
+    <meta name="author" content="Aapka Nivesh">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Aapka Nivesh - Your Trusted Mutual Fund Partner">
+    <meta property="og:description"
+        content="Smart investing starts here with Aapka Nivesh. SEBI registered mutual fund distributor providing expert guidance.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aapkanivesh.com">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>Aapka Nivesh - Your Trusted Mutual Fund Partner</title>
+
+    <style>
+        .testimonials-section {
+            padding: 4rem 0;
+            background: var(--background-light);
+            text-align: center;
+        }
+
+        .testimonials-section h2 {
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            /* Adjust height as needed */
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .testimonial-card.active {
+            opacity: 1;
+        }
+
+        .testimonial-card p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-container {
+                height: 300px;
+                /* Adjust for smaller screens */
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .testimonial-card p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Animation -->
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <span>Aapka Nivesh</span>
+                    <img src="images/logo.png" alt="Aapka Nivesh Logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="why-mutual-funds.html">Why Mutual Funds</a></li>
+                <li><a href="sip-calculator.html">SIP Calculator</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Trusted Mutual Fund Partner</h1>
+            <p>Smart Investing Starts Here</p>
+            <div class="hero-buttons">
+                <a href="contact.html" class="cta-button primary">
+                    Start Investing
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/919876543210" class="cta-button secondary" target="_blank">
+                    Talk to Advisor
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hero-animation">
+            <div class="chart-line"></div>
+            <div class="growth-circle"></div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item sebi-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="trust-content">
+                        <h3>SEBI Registered</h3>
+                        <p>ARN: 123456</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-users"></i>
+                    <div class="trust-content">
+                        <h3>600+</h3>
+                        <p>Happy Investors</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-award"></i>
+                    <div class="trust-content">
+                        <h3>15+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-certificate"></i>
+                    <div class="trust-content">
+                        <h3>Certified</h3>
+                        <p>AMFI Certified</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2>Why Choose Mutual Funds?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Professional Management</h3>
+                        <p>Expert fund managers handle your investments with years of experience and market knowledge
+                        </p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Diversification</h3>
+                        <p>Spread your investments across multiple assets to reduce risk and maximize returns</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Affordable Investment</h3>
+                        <p>Start with as little as ₹500 through SIP and build wealth over time</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>What Our Investors Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <p>Expert in the field of investment. He decides all my investments, especially insurance and mutual
+                        funds, which have been very profitable in the last ten years. His service is highly commendable.
+                        No person will be able to provide such good information and service. The entire tax saving plan
+                        and the children's education plan have been very successful.</p>
+                    <div class="author">Anand Kumar</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>He is one of the best and trustworthy investment advisor in the town for investment advise with
+                        fast services. He is very professional and keenly help you to make decisions about your finances
+                        and gives the best investment planning and provides insurance services too. Highly
+                        recommended!!!!</p>
+                    <div class="author">Kumar Sarthak</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>Sri SubodhJi is an excellent financial advisor whom I have been referring to for past more than 6
+                        years. Being in the investment and financial field, he has an in depth knowledge of all the
+                        existing schemes and is able to suggest you the best out of it according to your requirements. I
+                        am having a great trust on him for my investment management and would highly recommend people
+                        all around to reach out to him without even slightest of hesitation. Rest assured, you will get
+                        the best.</p>
+                    <div class="author">Amit Verma</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>Subodh Sir has very good knowledge and he has always given me the best investment advices. He
+                        completely understands your need and advice the policies accordingly. Highly recommended!</p>
+                    <div class="author">Sonali Jha</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>This man is one of the few financial planners available in Patna who has in depth knowledge of
+                        financial markets and tools. My entire portfolio, created by him gave handsome returns last
+                        year.. Feel happy to have got a planner like him,specially in Patna...</p>
+                    <div class="author">Ashish Thakur</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>I am satisfied his services since last 4 years during my investmen in different mutual funds.</p>
+                    <div class="author">Bipin Bihari Singh</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>Marvellous presentation of Financial planning.</p>
+                    <div class="author">Afroz Alam</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>My perfect Financial Planner</p>
+                    <div class="author">Dr Arvind Narayan Singh</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>Very Sincere and dedicated professional working very hard. I 100% satisfied.</p>
+                    <div class="author">Geeta Singh</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>Very good knowledge about Term life Insurance and Mutual Funds.</p>
+                    <div class="author">Sanjay Sinha</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>Most trusted investment advisor at the present time. I have taken health insurance for myself and
+                        all the family members and savings scheme for children's education/Marriage only on their
+                        advice. His service is also best.</p>
+                    <div class="author">Md Imran</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>Aap se mil kar pata chala ki investment sahi tarika dhanyawad Raman jee</p>
+                    <div class="author">Brajesh Roshan Pandey</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Investment Journey?</h2>
+            <p>Take the first step towards financial freedom with Aapka Nivesh</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-button primary">
+                    Get Started
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/919162486757" class="cta-button secondary" target="_blank">
+                    Talk to Advisor
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat with Advisor</span>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 9162486757</p>
+                    <p><i class="fas fa-envelope"></i> aranya.patna@gmail.com </p>
+                    <p><i class="fas fa-map-marker-alt"></i> Ground Floor, Aapka Nivesh, Shiv Shakti Boys Hostel, Back
+                        Side Of Ayachi Hospital, BMP Rd, near Pillar No 35, Khajpura, Patna, Bihar 800014</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about.html">About</a></p>
+                    <p><a href="why-mutual-funds.html">Why Mutual Funds</a></p>
+                    <p><a href="sip-calculator.html">SIP Calculator</a></p>
+                    <p><a href="photos.html">Photos</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aapka Nivesh. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const testimonials = document.querySelectorAll('.testimonial-card');
+            let currentTestimonial = 0;
+
+            function showTestimonial(index) {
+                testimonials.forEach((testimonial, i) => {
+                    if (i === index) {
+                        testimonial.classList.add('active');
+                    } else {
+                        testimonial.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextTestimonial() {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }
+
+            // Show the first testimonial initially
+            showTestimonial(currentTestimonial);
+
+            // Automatically switch testimonials every 3 seconds
+            setInterval(nextTestimonial, 3000);
+        });
+    </script>
+</body>
+
+</html>

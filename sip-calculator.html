@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Calculator - Aapka Nivesh</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .calculator-section {
+            padding: var(--spacing-xl) 0;
+            background: var(--background-light);
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .form-group input {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .calculate-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .calculate-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .results-section {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--background-lighter);
+            border-radius: 8px;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .result-card .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .disclaimer {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Aapka Nivesh Logo">
+                    <span>Aapka Nivesh</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="why-mutual-funds.html">Why Mutual Funds</a></li>
+                <li><a href="sip-calculator.html" class="active">SIP Calculator</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-container">
+                <h2>SIP Calculator</h2>
+                <p>Calculate your potential returns from Systematic Investment Plans</p>
+
+                <form class="calculator-form" id="sipCalculatorForm">
+                    <div class="form-group">
+                        <label for="monthlyInvestment">Monthly Investment (₹)</label>
+                        <input type="number" id="monthlyInvestment" min="500" step="500" required
+                            placeholder="Enter amount">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expectedReturn">Expected Annual Return (%)</label>
+                        <input type="number" id="expectedReturn" min="1" max="30" step="0.1" required
+                            placeholder="Enter expected return">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="investmentDuration">Investment Duration (Years)</label>
+                        <input type="number" id="investmentDuration" min="1" max="40" step="1" required
+                            placeholder="Enter duration">
+                    </div>
+
+                    <button type="submit" class="calculate-btn">
+                        <i class="fas fa-calculator"></i>
+                        Calculate Returns
+                    </button>
+                </form>
+
+                <div class="results-section" id="resultsSection">
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <h3>Total Investment</h3>
+                            <div class="value" id="totalInvestment">₹0</div>
+                        </div>
+                        <div class="result-card">
+                            <h3>Estimated Returns</h3>
+                            <div class="value" id="estimatedReturns">₹0</div>
+                        </div>
+                        <div class="result-card">
+                            <h3>Total Value</h3>
+                            <div class="value" id="totalValue">₹0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="disclaimer">
+                    This is a basic calculator for informational purposes only. Actual returns may vary.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat with Advisor</span>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 9162486757</p>
+                    <p><i class="fas fa-envelope"></i> aranya.patna@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Ground Floor, Aapka Nivesh, Shiv Shakti Boys Hostel, Back
+                        Side Of Ayachi Hospital, BMP Rd, near Pillar No 35, Khajpura, Patna, Bihar 800014</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about.html">About</a></p>
+                    <p><a href="why-mutual-funds.html">Why Mutual Funds</a></p>
+                    <p><a href="sip-calculator.html">SIP Calculator</a></p>
+                    <p><a href="photos.html">Photos</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aapka Nivesh. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('sipCalculatorForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get input values
+            const monthlyInvestment = parseFloat(document.getElementById('monthlyInvestment').value);
+            const expectedReturn = parseFloat(document.getElementById('expectedReturn').value);
+            const investmentDuration = parseInt(document.getElementById('investmentDuration').value);
+
+            // Calculate monthly interest rate
+            const monthlyRate = expectedReturn / 12 / 100;
+
+            // Calculate number of months
+            const numberOfMonths = investmentDuration * 12;
+
+            // Calculate future value using SIP formula
+            // FV = P × [ (1 + r)^n – 1 ] × (1 + r) / r
+            const futureValue = monthlyInvestment *
+                ((Math.pow(1 + monthlyRate, numberOfMonths) - 1) * (1 + monthlyRate)) / monthlyRate;
+
+            // Calculate total investment
+            const totalInvestment = monthlyInvestment * numberOfMonths;
+
+            // Calculate estimated returns
+            const estimatedReturns = futureValue - totalInvestment;
+
+            // Format numbers to Indian currency format
+            const formatter = new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                maximumFractionDigits: 0
+            });
+
+            // Update results
+            document.getElementById('totalInvestment').textContent = formatter.format(totalInvestment);
+            document.getElementById('estimatedReturns').textContent = formatter.format(estimatedReturns);
+            document.getElementById('totalValue').textContent = formatter.format(futureValue);
+
+            // Show results section
+            document.getElementById('resultsSection').classList.add('active');
+        });
+    </script>
+</body>
+
+</html>
