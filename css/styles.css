@@ -1014,20 +1014,169 @@ footer {
 
 /* Mobile Menu */
 @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
     .nav-links {
-        backdrop-filter: blur(10px);
-        background: rgba(255, 255, 255, 0.95);
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--white);
+        flex-direction: column;
+        align-items: center;
+        padding: var(--spacing-xl) 0;
+        transform: translateX(-100%);
+        transition: transform var(--transition-normal);
+        gap: var(--spacing-lg);
+        overflow-y: auto;
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+
+    .menu-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
 
     .nav-links a {
-        width: 100%;
-        text-align: center;
-        padding: 1rem;
-        border-bottom: 1px solid var(--background-lighter);
+        width: 80%;
+        max-width: 300px;
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: 1.1rem;
+        border: 1px solid var(--background-lighter);
+        margin: 0 var(--spacing-md);
     }
 
-    .nav-links a:last-child {
-        border-bottom: none;
+    .nav-links a::before {
+        display: none;
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: var(--primary-color);
+        color: var(--white);
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .nav-links a:active {
+        transform: translateY(0);
+        box-shadow: var(--shadow-sm);
+    }
+
+    /* Hero Section Mobile */
+    .hero {
+        margin-top: 70px;
+        padding: calc(var(--spacing-xl) * 1.5) 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+        padding-top: var(--spacing-lg);
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    /* WhatsApp Button Mobile */
+    .whatsapp-button {
+        bottom: var(--spacing-md);
+        right: var(--spacing-md);
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .whatsapp-button span {
+        display: none !important;
+    }
+
+    .whatsapp-button i {
+        display: none !important;
+    }
+
+    .whatsapp-logo-mobile {
+        display: block !important;
+        height: 30px !important;
+        width: auto !important;
+        margin: 0;
+    }
+
+    /* Trust Section Mobile */
+    .trust-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .trust-item {
+        padding: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        height: 60px;
+    }
+
+    .navbar.scrolled {
+        height: 50px;
+    }
+
+    .hero {
+        margin-top: 60px;
+        padding: var(--spacing-xl) 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        padding-top: var(--spacing-md);
+    }
+
+    .whatsapp-button {
+        width: 45px;
+        height: 45px;
+        bottom: var(--spacing-sm);
+        right: var(--spacing-sm);
+    }
+
+    .whatsapp-logo-mobile {
+        height: 25px !important;
+    }
+
+    .nav-links {
+        top: 60px;
+        height: calc(100vh - 60px);
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+        padding: var(--spacing-sm) var(--spacing-sm);
     }
 }
 
